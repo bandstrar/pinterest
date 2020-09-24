@@ -1,8 +1,16 @@
+import firebase from 'firebase/app';
+import apiKeys from './helpers/apiKeys.json';
+import navbar from './components/navbar/myNavbar';
+import login from './components/auth/auth';
+import authData from './helpers/data/authData';
+
 import '../styles/main.scss';
 
 const init = () => {
-  $('#app').html('<h1>HELLO! You are up and running!</h1>');
-  console.log('YOU ARE UP AND RUNNING!');
+  firebase.initializeApp(apiKeys.firebaseKeys);
+  navbar.myNavbar();
+  login.loginButton();
+  authData.checkLoginStatus();
 };
 
 init();
