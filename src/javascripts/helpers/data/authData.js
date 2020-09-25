@@ -10,10 +10,10 @@ const checkLoginStatus = () => {
       userData.getUser(user);
       $('#app').addClass('hide');
       $('#dinnterest').removeClass('hide');
-      $('#navbar-logout-button').removeClass('hide');
+      $('#nav').removeClass('hide');
       $('#dinnterest').html('<h1>Boards</h1>');
     } else {
-      $('#navbar-logout-button').addClass('hide');
+      $('#nav').addClass('hide');
       $('#app').removeClass('hide');
       $('#dinnterest').addClass('hide');
     }
