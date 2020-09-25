@@ -9,12 +9,12 @@ const checkLoginStatus = () => {
     if (user) {
       userData.getUser(user);
       $('#auth').addClass('hide');
-      //   $('#app').removeClass('hide');
+      $('#dinnterest').removeClass('hide');
       $('#navbar-logout-button').removeClass('hide');
     } else {
       $('#navbar-logout-button').addClass('hide');
       $('#auth').removeClass('hide');
-    //   $('#app').addClass('hide');
+      $('#dinnterest').addClass('hide');
     }
   });
 };

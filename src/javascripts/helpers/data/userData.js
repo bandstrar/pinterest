@@ -1,24 +1,24 @@
 import axios from 'axios';
 import apiKeys from '../apiKeys.json';
 
-const baseURL = apiKeys.firebaseKeys.databaseURL;
+const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
 const getUser = (userObj) => {
   axios
-    .get(`${baseURL}/users.json?orderBy="uid"&equalTo="${userObj.uid}"`)
+    .get(`${baseUrl}/users.json?orderBy="uid"&equalTo="${userObj.uid}"`)
     .then((resp) => {
       if (Object.values(resp.data).length === 0) {
-        axios.post(`${baseURL}/users.json`, {
+        axios.post(`${baseUrl}/users.json`, {
+          image: userObj.photoURL,
           uid: userObj.uid,
           displayName: userObj.displayName,
           email: userObj.email,
-          image: userObj.image,
-          lastSignInTime: userObj.lastSignInTime
+          lastSignInTime: userObj.metadata.lastSignInTime
         });
       } else {
         console.warn('User Exists');
       }
-    });
+    }).catch((error) => console.warn(error));
 };
 
 export default { getUser };
