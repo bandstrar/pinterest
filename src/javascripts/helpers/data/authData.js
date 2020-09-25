@@ -8,12 +8,13 @@ const checkLoginStatus = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       userData.getUser(user);
-      $('#auth').addClass('hide');
+      $('#app').addClass('hide');
       $('#dinnterest').removeClass('hide');
       $('#navbar-logout-button').removeClass('hide');
+      $('#dinnterest').html('<h1>Boards</h1>');
     } else {
       $('#navbar-logout-button').addClass('hide');
-      $('#auth').removeClass('hide');
+      $('#app').removeClass('hide');
       $('#dinnterest').addClass('hide');
     }
   });
