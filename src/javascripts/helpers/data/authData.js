@@ -2,6 +2,8 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import userData from './userData';
 import myNavbar from '../../components/navbar/myNavbar';
+import viewHelper from '../viewHelper';
+import auth from '../../components/auth/auth';
 
 const checkLoginStatus = () => {
   myNavbar.myNavbar();
@@ -11,10 +13,11 @@ const checkLoginStatus = () => {
       $('#app').addClass('hide');
       $('#dinnterest').removeClass('hide');
       $('#nav').removeClass('hide');
-      $('#dinnterest').html('<h1>Boards</h1>');
+      viewHelper.viewListener('board-link');
     } else {
       $('#nav').addClass('hide');
       $('#app').removeClass('hide');
+      auth.loginButton();
       $('#dinnterest').addClass('hide');
     }
   });
