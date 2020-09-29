@@ -10,15 +10,15 @@ const checkLoginStatus = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       userData.getUser(user);
-      $('#app').addClass('hide');
-      $('#dinnterest').removeClass('hide');
+      $('#auth').addClass('hide');
+      $('#app').removeClass('hide');
       $('#nav').removeClass('hide');
       viewHelper.viewListener('board-link');
     } else {
       $('#nav').addClass('hide');
-      $('#app').removeClass('hide');
+      $('#auth').removeClass('hide');
       auth.loginButton();
-      $('#dinnterest').addClass('hide');
+      $('#app').addClass('hide');
     }
   });
 };

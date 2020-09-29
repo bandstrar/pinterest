@@ -2,14 +2,14 @@ import boardData from '../../helpers/data/boardData';
 import card from '../cards/boardCards';
 
 const boardView = () => {
+  $('#app').append('<h1>Boards</h1>');
   boardData.getBoards().then((response) => {
-    $('#dinnterest').append('<h1>Boards</h1>');
     if (response.length) {
       response.forEach((item) => {
-        $('#dinnterest').append(card.boardMaker(item));
+        $('#app').append(card.boardMaker(item));
       });
     } else {
-      $('#dinnterest').append('<h2>NO boards</h2>');
+      $('#app').append('<h2>NO boards</h2>');
     }
   });
 };

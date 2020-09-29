@@ -1,18 +1,17 @@
 import boardView from '../components/views/boardsView';
 
 const viewHelper = (id) => {
-  $('#dinnterest').html('');
+  $('#app').html('');
   switch (id) {
     case 'board-link':
       return boardView.boardView();
     default:
-      return console.warn('nothing clickded');
+      return console.warn('nothing clicked');
   }
 };
 
 const viewListener = (view) => {
   viewHelper(view);
-
   $('body').on('click', 'li.nav-item', (e) => {
     viewHelper(e.currentTarget.id);
   });

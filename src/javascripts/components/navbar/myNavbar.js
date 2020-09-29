@@ -6,6 +6,7 @@ const logoutEvent = () => {
     e.preventDefault();
 
     firebase.auth().signOut();
+    window.location.href = '/';
   });
 };
 
