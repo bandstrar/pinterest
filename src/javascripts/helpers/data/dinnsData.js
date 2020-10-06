@@ -17,4 +17,7 @@ const getDinns = () => new Promise((resolve, reject) => {
     })
     .catch((error) => reject(error));
 });
-export default { getDinns };
+
+const deleteDinn = (firebaseKey) => axios.delete(`${baseUrl}/dinns/${firebaseKey}.json`);
+
+export default { getDinns, deleteDinn };
