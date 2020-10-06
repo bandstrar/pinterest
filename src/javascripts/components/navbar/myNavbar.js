@@ -6,6 +6,7 @@ const logoutEvent = () => {
     e.preventDefault();
 
     firebase.auth().signOut();
+    window.location.href = '/';
   });
 };
 
@@ -19,6 +20,9 @@ const myNavbar = () => {
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+        <li class="nav-item mx-3"  id="board-link">
+          <a class="nav-link" href="#">All Boards</a>
+        </li>
         <li class="nav-item mx-3"  id="add-board">
           <a class="nav-link" href="#">Add Board</a>
         </li>
