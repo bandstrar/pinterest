@@ -1,3 +1,5 @@
+import addBoardView from '../components/views/addBoardView';
+import addDinnView from '../components/views/addDinnView';
 import boardView from '../components/views/boardsView';
 import dinnsView from '../components/views/dinnsView';
 
@@ -6,6 +8,10 @@ const viewHelper = (id) => {
   switch (id) {
     case 'board-link':
       return boardView.boardView();
+    case 'add-board':
+      return addBoardView.addBoardView();
+    case 'add-dinn':
+      return addDinnView.addDinnView();
     case 'dinns-link':
       return dinnsView.dinnsView();
     default:

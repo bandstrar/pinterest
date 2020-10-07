@@ -26,6 +26,8 @@ const myNavbar = () => {
         <li class="nav-item mx-3"  id="add-board">
           <a class="nav-link" href="#">Add Board</a>
         </li>
+        <li class="nav-item mx-3"  id="add-dinn">
+        </li>
       </ul>
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
