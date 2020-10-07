@@ -26,4 +26,13 @@ const addBoard = (data) => axios.post(`${baseUrl}/boards.json`, data)
 
 const deleteBoard = (firebaseKey) => axios.delete(`${baseUrl}/boards/${firebaseKey}.json`);
 
-export default { getBoards, deleteBoard, addBoard };
+const getSingleBoard = (boardFirebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/boards/${boardFirebaseKey}.json`).then((response) => {
+    const thisBoard = response.data;
+    resolve(thisBoard);
+  }).catch((error) => reject(error));
+});
+
+export default {
+  getBoards, deleteBoard, addBoard, getSingleBoard
+};
