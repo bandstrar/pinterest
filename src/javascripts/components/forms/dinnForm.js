@@ -1,4 +1,5 @@
 import dinnData from '../../helpers/data/dinnsData';
+import boardData from '../../helpers/data/boardData';
 
 const dinnForm = () => {
   $('#dinn-form').html(
@@ -22,9 +23,21 @@ const dinnForm = () => {
                 <label for="link">Link</label>
                 <input type="text" class="form-control" id="dinn-link" placeholder="Example: http://www.google.com">
               </div>
+              <div class="form-group">
+            <label for="dinn-board">Board</label>
+              <select class="form-control" id="dinn-board">
+                <option value="">Select a Board</option>
+              </select>
+          </div>
               <button id="add-dinn-btn" type="submit" class="btn btn-info"><i class="fas fa-plus-circle"></i> Add Dinn</button>
             </form>`
   );
+
+  boardData.getBoards().then((response) => {
+    response.forEach((item) => {
+      $('select').append(`<option value="${item.firebaseKey}">${item.name}</option>`);
+    });
+  });
 
   $('#add-dinn-btn').on('click', (e) => {
     e.preventDefault();
@@ -33,7 +46,8 @@ const dinnForm = () => {
       name: $('#dinn-name').val() || false,
       image: $('#dinn-image').val() || false,
       description: $('#dinn-description').val() || false,
-      link: $('#dinn-link').val() || false
+      link: $('#dinn-link').val() || false,
+      boardId: $('#dinn-board').val() || false
     };
 
     if (Object.values(data).includes(false)) {

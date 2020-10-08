@@ -18,6 +18,23 @@ const getDinns = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getboardDinns = (firebaseKey) => new Promise((resolve, reject) => {
+  axios
+    .get(`${baseUrl}/dinns.json?orderBy="boardId"&equalTo="${firebaseKey}"`)
+    .then((response) => {
+      const boardDinns = response.data;
+      const dinns = [];
+      if (boardDinns) {
+        Object.keys(boardDinns).forEach((dinnId) => {
+          dinns.push(boardDinns[dinnId]);
+        });
+      }
+
+      resolve(dinns);
+    })
+    .catch((error) => reject(error));
+});
+
 const addDinn = (data) => axios.post(`${baseUrl}/dinns.json`, data)
   .then((response) => {
     const update = { firebaseKey: response.data.name };
@@ -26,4 +43,6 @@ const addDinn = (data) => axios.post(`${baseUrl}/dinns.json`, data)
 
 const deleteDinn = (firebaseKey) => axios.delete(`${baseUrl}/dinns/${firebaseKey}.json`);
 
-export default { getDinns, deleteDinn, addDinn };
+export default {
+  getDinns, deleteDinn, addDinn, getboardDinns
+};
