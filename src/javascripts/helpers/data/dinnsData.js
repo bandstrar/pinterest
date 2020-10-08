@@ -43,6 +43,15 @@ const addDinn = (data) => axios.post(`${baseUrl}/dinns.json`, data)
 
 const deleteDinn = (firebaseKey) => axios.delete(`${baseUrl}/dinns/${firebaseKey}.json`);
 
+const getSingleDinn = (dinnFirebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/dinns/${dinnFirebaseKey}.json`).then((response) => {
+    const thisDinn = response.data;
+    resolve(thisDinn);
+  }).catch((error) => reject(error));
+});
+
+const updateDinn = (firebaseKey, dinnObject) => axios.patch(`${baseUrl}/dinns/${firebaseKey}.json`, dinnObject);
+
 export default {
-  getDinns, deleteDinn, addDinn, getboardDinns
+  getDinns, deleteDinn, addDinn, getboardDinns, updateDinn, getSingleDinn
 };
