@@ -6,6 +6,7 @@ const dinnMaker = (dinnObject) => {
     <div class="card-body">
       <h5 class="card-title">${dinnObject.name}</h5>
       <p class="card-description">${dinnObject.description}</p>
+      <a href="#" id="${dinnObject.firebaseKey}" class="btn btn-info update-dinn"><i class="far fa-edit"></i>Update Dinn</a>
       <a href="#" id="${dinnObject.firebaseKey}" class="btn btn-primary delete-dinn">Delete</a>
     </div>
   </div>`;
