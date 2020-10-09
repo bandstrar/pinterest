@@ -1,3 +1,5 @@
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import axios from 'axios';
 import apiKeys from '../apiKeys.json';
 import dinnData from './dinnsData';
@@ -15,6 +17,24 @@ const getBoards = () => new Promise((resolve, reject) => {
         });
       }
       resolve(boardsArray);
+    })
+    .catch((error) => reject(error));
+});
+
+const getUserBoards = () => new Promise((resolve, reject) => {
+  const user = firebase.auth().currentUser;
+  axios
+    .get(`${baseUrl}/boards.json?orderBy="userUid"&equalTo="${user.uid}"`)
+    .then((response) => {
+      const userBoards = response.data;
+      const boards = [];
+      if (userBoards) {
+        Object.keys(userBoards).forEach((boardId) => {
+          boards.push(userBoards[boardId]);
+        });
+      }
+
+      resolve(boards);
     })
     .catch((error) => reject(error));
 });
@@ -48,5 +68,5 @@ const deleteBoard = (boardId) => {
 };
 
 export default {
-  getBoards, deleteBoard, addBoard, getSingleBoard
+  getBoards, deleteBoard, addBoard, getSingleBoard, getUserBoards
 };
