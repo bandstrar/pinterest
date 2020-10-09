@@ -1,3 +1,5 @@
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import boardData from '../../helpers/data/boardData';
 
 const boardForm = () => {
@@ -17,13 +19,14 @@ const boardForm = () => {
               <button id="add-board-btn" type="submit" class="btn btn-info"><i class="fas fa-plus-circle"></i> Add Board</button>
             </form>`
   );
-
+  const user = firebase.auth().currentUser;
   $('#add-board-btn').on('click', (e) => {
     e.preventDefault();
 
     const data = {
       name: $('#name').val() || false,
-      image: $('#image').val() || false
+      image: $('#image').val() || false,
+      userUid: user.uid || false
     };
 
     if (Object.values(data).includes(false)) {
