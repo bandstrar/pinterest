@@ -3,23 +3,6 @@ import apiKeys from '../apiKeys.json';
 
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
-const getAllUsers = () => new Promise((resolve, reject) => {
-  axios
-    .get(`${baseUrl}/users.json`)
-    .then((response) => {
-      const allUsers = response.data;
-      const users = [];
-
-      if (allUsers) {
-        Object.keys(allUsers).forEach((userId) => {
-          users.push(allUsers[userId]);
-        });
-      }
-      resolve(users);
-    })
-    .catch((error) => reject(error));
-});
-
 const checkIfUserExistsInFirebase = (user) => {
   axios
     .get(`${baseUrl}/users.json?orderBy="uid"&equalTo="${user.uid}"`)
@@ -52,13 +35,4 @@ const setCurrentUser = (userObj) => {
   return user;
 };
 
-const getSingleUser = (userUid) => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/users.json?orderBy="uid"&equalTo="${userUid}"`)
-    .then((response) => {
-      const user = Object.values(response.data);
-      const thisUser = user[0];
-      resolve(thisUser);
-    }).catch((error) => reject(error));
-});
-
-export default { getAllUsers, getSingleUser, setCurrentUser };
+export default { setCurrentUser };
