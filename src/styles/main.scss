@@ -2,16 +2,18 @@
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 
 body {
-  background-color: antiquewhite;
-  color: brown;
+  background-color: rgb(36, 6, 12);
+  color: rgb(138, 132, 50);
   text-align: center;
-}
-
-.hide {
-  display: none;
 }
 
 .welcome-logo {
   font-size: 10em;
   color: #78573b;
+}
+
+#app {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
 }
